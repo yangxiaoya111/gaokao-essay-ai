@@ -325,5 +325,14 @@ topicEl.addEventListener("keydown", (e) => {
   window.addEventListener("load", () => setTimeout(generate, 300));
 })();
 
+// 支持 URL 参数自动打开登录/注册弹窗（便于演示与截图）：/?auth=login 或 /?auth=register
+(function autoOpenAuth() {
+  const p = new URLSearchParams(window.location.search);
+  const mode = p.get("auth");
+  if (mode === "login" || mode === "register") {
+    window.addEventListener("load", () => setTimeout(() => openAuth(mode), 300));
+  }
+})();
+
 // 初始化
 updateAuthUI();
