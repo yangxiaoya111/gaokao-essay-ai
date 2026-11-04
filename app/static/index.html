@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>高考满分作文智能应用</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <h1 class="logo">📝 高考满分作文智能应用</h1>
+      <div class="student-info">
+        <span>班级：<b>网安241</b></span>
+        <span>姓名：<b>杨筱雅</b></span>
+        <span>学号：<b>202401050814</b></span>
+      </div>
+    </div>
+    <div class="auth-bar">
+      <span id="welcome" class="welcome" style="display:none"></span>
+      <button id="btn-login" class="btn-auth">登录</button>
+      <button id="btn-register" class="btn-auth">注册</button>
+      <button id="btn-history" class="btn-auth" style="display:none">📚 我的历史</button>
+      <button id="btn-logout" class="btn-auth" style="display:none">退出</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card input-card">
+      <h2>输入作文题目</h2>
+      <div class="field">
+        <textarea id="topic" rows="3" placeholder="例如：请以『跨越，再跨越』为主题写一篇文章；或粘贴完整的高考作文题目材料……"></textarea>
+      </div>
+
+      <div class="controls">
+        <div class="control">
+          <label for="style">文体</label>
+          <select id="style">
+            <option value="自动" selected>自动</option>
+            <option value="议论文">议论文</option>
+            <option value="记叙文">记叙文</option>
+            <option value="散文">散文</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="word_count">字数</label>
+          <select id="word_count">
+            <option value="800" selected>800 字</option>
+            <option value="600">600 字</option>
+            <option value="1000">1000 字</option>
+            <option value="1200">1200 字</option>
+          </select>
+        </div>
+        <button id="generate" class="btn-primary">✨ 生成满分作文</button>
+      </div>
+    </section>
+
+    <section class="card result-card">
+      <div class="result-head">
+        <h2>生成结果</h2>
+        <div class="result-meta">
+          <span id="meta"></span>
+          <button id="copy" class="btn-ghost" disabled>复制全文</button>
+        </div>
+      </div>
+      <div id="result" class="result-body">
+        <p class="placeholder">生成结果将显示在这里。</p>
+      </div>
+    </section>
+
+    <section class="card history-card" id="history-card" style="display:none">
+      <div class="result-head">
+        <h2>📚 我的历史记录</h2>
+        <button id="refresh-history" class="btn-ghost">刷新</button>
+      </div>
+      <div id="history-list" class="history-list"></div>
+    </section>
+  </main>
+
+  <!-- 登录 / 注册弹窗 -->
+  <div id="auth-modal" class="modal-mask" style="display:none">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="auth-title">登录</h3>
+        <button id="auth-close" class="modal-close">✕</button>
+      </div>
+      <div class="auth-tabs">
+        <button id="tab-login" class="tab active">登录</button>
+        <button id="tab-register" class="tab">注册</button>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <label>用户名</label>
+          <input id="auth-username" type="text" autocomplete="username" />
+        </div>
+        <div class="field">
+          <label>密码</label>
+          <input id="auth-password" type="password" autocomplete="current-password" />
+        </div>
+        <p id="auth-error" class="error" style="display:none"></p>
+        <button id="auth-submit" class="btn-primary btn-block">登录</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    《生成式人工智能》课程实验 · 实验1 高考满分作文智能应用 · FastAPI + OpenAI SDK + 多用户系统
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
